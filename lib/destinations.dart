@@ -9,6 +9,7 @@ class destinations extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
         leading: Padding(
@@ -39,11 +40,11 @@ class destinations extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.all(20.0),
+            margin: EdgeInsets.all(15.0),
             child: Text(
               "SAVED Destinations",
               style: TextStyle(
-                fontSize: 44.0,
+                fontSize: 38.0,
                 fontFamily: 'times',
                 fontWeight: FontWeight.w900,
               ),
@@ -57,6 +58,7 @@ class destinations extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: Column(
+
                     children: <Widget>[
                       Expanded(
                         child: ReuseableContainer(
@@ -67,10 +69,9 @@ class destinations extends StatelessWidget {
                           distance: "3200KM",
                           img: "london-bridge.jpg",
                           distanceIcon: Icons.location_on,
-
                         ),
                       ),
-                      SizedBox(height: 10.0),
+                      // SizedBox(height: 10.0),
                       Expanded(
                         flex: 2,
                         child: ReuseableContainer(
@@ -79,15 +80,15 @@ class destinations extends StatelessWidget {
                           country: "SFO",
                           city: "San Francico",
                           distance: "1376 KM",
-                          img: "london-bridge.jpg",
+                          img: "london-city.jpg",
                           distanceIcon: Icons.location_on,),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: 10.0,
-                ),
+                // SizedBox(
+                //   width: 10.0,
+                // ),
                 Expanded(
                   child: Column(
                     children: <Widget>[
@@ -99,11 +100,10 @@ class destinations extends StatelessWidget {
                           country: "DEN",
                           city: "Denver",
                           distance: "6409 KM",
-
-                          img: "london-bridge.jpg",
+                          img: "city.jpg",
                           distanceIcon: Icons.location_on),
                       ),
-                      SizedBox(height: 10.0),
+                      // SizedBox(height: 10.0),
                       Expanded(
                         child: ReuseableContainer(
                             icon: Icons.calendar_today,
@@ -111,7 +111,7 @@ class destinations extends StatelessWidget {
                             country: "NYC",
                             city: "New York",
                             distance: "3200KM",
-                            img: "london-bridge.jpg",
+                            img: "mountains.jpg",
                             distanceIcon: Icons.location_on,),
                       ),
                     ],
@@ -159,9 +159,11 @@ class ReuseableContainer extends StatelessWidget {
           children: <Widget>[
 
             Expanded(
+              // flex: 2,
               child: ChildContainer(
+                city_Text: "",
                 text: date,
-                icon: icon,
+               icon: icon,
                 text_style: TextStyle(
                   color:Color(0xFFF1F2F4),
                 ),
@@ -169,17 +171,19 @@ class ReuseableContainer extends StatelessWidget {
             ),
 
             Expanded(
-
+              // flex: 2,
               child: ChildContainer(
                 text: country,
+                city_Text: city ,
                 text_style: TextStyle(
-                  fontSize: 30.0,
+                  fontSize: 24.0,
                   color:Color(0xFFF1F2F4),
                 ),
               ),
             ),
 
             Expanded(
+              // flex: 2,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -187,25 +191,21 @@ class ReuseableContainer extends StatelessWidget {
                     textBaseline: TextBaseline.alphabetic,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: <Widget>[
-                      ChildContainer(text:"",icon: distanceIcon,),
-                      ChildContainer(text: distance,text_style: TextStyle(
+                      ChildContainer(city_Text: "",text:"",icon: distanceIcon,),
+                      ChildContainer(city_Text:"",text: distance,text_style: TextStyle(
                         fontSize: 14.0,
                         color: Color(0xFFF1F2F4),
                         ),
                       ),
-
-
                     ],
-                  )
-
+                  ),
                 ],
               ),
             ),
-
           ],
         ),
       ),
-      margin: EdgeInsets.all(7.0),
+      margin: EdgeInsets.all(3.0),
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
@@ -213,7 +213,6 @@ class ReuseableContainer extends StatelessWidget {
           ),
           fit: BoxFit.fill,
         ),
-
         borderRadius: BorderRadius.circular(10.0),
       ),
     );
@@ -221,26 +220,32 @@ class ReuseableContainer extends StatelessWidget {
 }
 
 
-class ChildContainer extends StatelessWidget {
 
-  ChildContainer({this.icon, required this.text, this.text_style});
+class ChildContainer extends StatelessWidget {
+  ChildContainer({this.icon, required this.text, this.text_style,required this.city_Text});
   final IconData? icon;
   final String text;
+  final String city_Text;
   final TextStyle? text_style;
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
+ 
+      return Column(
         mainAxisAlignment: MainAxisAlignment.center,
 
         children: <Widget>[
-          Icon(icon,color: Color(0xFFF1F2F4),),
-          Text(text,
+          Icon(icon,color: Color(0xFFF1F2F4),size: 18.0,),
+          Text("$text",
           style: text_style,
           ),
+          Text("$city_Text",
+            style: TextStyle(
+              fontSize: 12,
+            ),
+          ),
+
         ],
-      ),
+     
     );
   }
 }

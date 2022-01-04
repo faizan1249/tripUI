@@ -1,4 +1,7 @@
+import 'package:dotted_line/dotted_line.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 const TextStyle countryText = TextStyle(
   fontSize: 22.0,
@@ -34,23 +37,21 @@ class ReuseableCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
 
-        width: double.infinity,
+    return Expanded(
+
+      child: Container(
         margin: EdgeInsets.all(20.0),
         decoration: BoxDecoration(
-
           color: Colors.white, //background color of box
           boxShadow: [
-
             BoxShadow(
               color: Colors.grey,
               blurRadius: 25.0, // soften the shadow
-              spreadRadius: 5.0, //extend the shadow
+              spreadRadius: 2.0, //extend the shadow
               offset: Offset(
-                15.0, // Move to right 10  horizontally
-                15.0, // Move to bottom 10 Vertically
+                10.0, // Move to right 10  horizontally
+                10.0, // Move to bottom 10 Vertically
               ),
             ),
 
@@ -61,36 +62,34 @@ class ReuseableCard extends StatelessWidget {
 
         ),
         child: Row(
+            children: <Widget>[
+                DepartWidget(
 
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(10.0),
+                    DepartCountry: DepartCountry,
+                    DepartCity: DepartCity,
+                    DepartTime: DepartTime,
 
-                child: DepartWidget(
-                  DepartCountry: DepartCountry,
-                  DepartCity: DepartCity,
-                  DepartTime: DepartTime,
                 ),
-
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-
-                child: ArriveWidget(
+                ArriveWidget(
                   ArriveCountry: ArriveCountry,
                   ArriveCity: ArriveCity,
                   ArriveTime: ArriveTime,
                 ),
 
-            ),
 
-            Expanded(
-                child: flightWidget(),
-            ),
+              DottedLine(
+                direction: Axis.vertical,
+                dashColor: Colors.grey,
+              ),
 
-          ],
+
+                 flightWidget(),
+
+
+            ],
+          ),
         ),
-      ),
+
     );
   }
 }
@@ -99,11 +98,16 @@ class flightWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Icon(Icons.flight),
-      ],
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+              Transform.rotate(
+                angle: 90*pi/180,
+                  child: Icon(Icons.flight)
+              ),
+        ],
+      ),
     );
   }
 }
@@ -122,16 +126,23 @@ class ArriveWidget extends StatelessWidget {
   String ArriveTime;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(ArriveCountry,style: countryText,),
-        Text(ArriveCity),
-        SizedBox(height: 10.0,),
-        Text(ArriveTime),
-      ],
-    );
+
+      return Expanded(
+        child: Padding(
+
+          padding: const EdgeInsets.only(right:8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Text(ArriveCountry,style: countryText,),
+              Text(ArriveCity),
+              SizedBox(height: 10.0,),
+              Text(ArriveTime),
+            ],
+          ),
+        ),
+      );
   }
 }
 
@@ -148,18 +159,22 @@ class DepartWidget extends StatelessWidget {
   String DepartCity;
   String DepartTime;
 
-
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(DepartCountry,style: countryText,),
-        Text(DepartCity),
-        SizedBox(height: 10.0,),
-        Text(DepartTime),
-      ],
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.only(left:10.0,top: 7.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(DepartCountry,style: countryText,),
+            Text(DepartCity),
+            SizedBox(height: 10.0,),
+            Text(DepartTime),
+          ],
+        ),
+      ),
     );
   }
 }

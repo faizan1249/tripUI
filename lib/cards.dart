@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'main.dart';
 import 'reuseable.dart';
+import 'package:dotted_line/dotted_line.dart';
+
+
 
 
 class cards extends StatelessWidget {
-
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           elevation: 0,
           leading: Padding(
@@ -49,7 +50,8 @@ class cards extends StatelessWidget {
                 ),
               ),
             ),
-       ReuseableCard(
+
+              ReuseableCard(
                 DepartCountry: "NYC",
                 DepartCity: "New York",
                 DepartTime: "12 January, 2021",
@@ -60,8 +62,9 @@ class cards extends StatelessWidget {
 
               ),
 
+
             
-      ReuseableCard(
+              ReuseableCard(
                 DepartCountry: "LAS",
                 DepartCity: "Las Vegas",
                 DepartTime: "24 February, 2021",
@@ -71,7 +74,7 @@ class cards extends StatelessWidget {
                 ArriveTime: "1 Adult",
               ),
 
-      ReuseableCard(
+              ReuseableCard(
                 DepartCountry: "LAX",
                 DepartCity: "Los Anglese",
                 DepartTime: "9 May, 2021",
@@ -81,9 +84,7 @@ class cards extends StatelessWidget {
                 ArriveTime: "2 Adults, 1 Child",
               ),
 
-
-            SingleChildScrollView(
-              child:ReuseableCard(
+              ReuseableCard(
                 DepartCountry: "AUS",
                 DepartCity: "Austin",
                 DepartTime: "12 January, 2021",
@@ -92,9 +93,6 @@ class cards extends StatelessWidget {
                 ArriveCity: "Indianapolis",
                 ArriveTime: "4 Adults",
               ),
-            ),
-
-
           ],
         ),
       ),
