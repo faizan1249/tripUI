@@ -6,6 +6,7 @@ import 'main.dart';
 class destinations extends StatelessWidget {
   const destinations({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +41,7 @@ class destinations extends StatelessWidget {
       body: Column(
         children: [
           Container(
+
             margin: EdgeInsets.all(15.0),
             child: Text(
               "SAVED Destinations",
@@ -51,17 +53,15 @@ class destinations extends StatelessWidget {
             ),
           ),
 
-
-
           Expanded(
             child: Row(
               children: <Widget>[
                 Expanded(
                   child: Column(
-
                     children: <Widget>[
                       Expanded(
                         child: ReuseableContainer(
+
                           icon: Icons.calendar_today,
                           date: "12 March, 2021",
                           country: "NYC",
@@ -73,7 +73,7 @@ class destinations extends StatelessWidget {
                       ),
                       // SizedBox(height: 10.0),
                       Expanded(
-                        flex: 2,
+
                         child: ReuseableContainer(
                           icon: Icons.calendar_today,
                           date: "28 May, 2021",
@@ -131,7 +131,6 @@ class destinations extends StatelessWidget {
 
 
 class ReuseableContainer extends StatelessWidget {
-
   ReuseableContainer({
     required this.distanceIcon,
     required this.icon,
@@ -164,6 +163,7 @@ class ReuseableContainer extends StatelessWidget {
                 city_Text: "",
                 text: date,
                icon: icon,
+
                 text_style: TextStyle(
                   color:Color(0xFFF1F2F4),
                 ),
@@ -205,9 +205,12 @@ class ReuseableContainer extends StatelessWidget {
           ],
         ),
       ),
+
       margin: EdgeInsets.all(3.0),
+
       decoration: BoxDecoration(
         image: DecorationImage(
+          colorFilter: ColorFilter.mode(Colors.black38,BlendMode.hardLight),
           image: AssetImage(
             img,
           ),
@@ -229,23 +232,24 @@ class ChildContainer extends StatelessWidget {
   final TextStyle? text_style;
   @override
   Widget build(BuildContext context) {
- 
+
+
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
-
         children: <Widget>[
           Icon(icon,color: Color(0xFFF1F2F4),size: 18.0,),
           Text("$text",
           style: text_style,
           ),
+
+
           Text("$city_Text",
             style: TextStyle(
               fontSize: 12,
+              color: Color(0xFFF1F2F4),
             ),
           ),
-
         ],
-     
     );
   }
 }

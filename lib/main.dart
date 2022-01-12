@@ -4,11 +4,12 @@ import 'cards.dart';
 import 'desc.dart';
 
 
+
+
 void main() {
   runApp(Ticket_Main());
 }
 class Ticket_Main extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +20,7 @@ class Ticket_Main extends StatelessWidget {
           backgroundColor: Color(0xFFFFFFFF),
         )
       ),
-      home: cards(),
+      home: Description(),
     );
   }
 }
